@@ -1,0 +1,7 @@
+{
+    "buildCommand": "npx vite build",
+    "outputDirectory": "dist",
+    "framework": "vite",
+    "ignoreCommand": "echo ignorar cache"
+  }
+  
