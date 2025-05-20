@@ -21,7 +21,7 @@ export default function Navbar() {
               <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">Login</Link>
               <Link to="/register" className="block px-4 py-2 hover:bg-gray-100">Cadastro</Link>
               <Link to="/cadastro-filho" className="block px-4 py-2 hover:bg-gray-100">Cadastrar Filho</Link>
-              <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100">Painel</Link>
+              <Link to="/pai-dashboard" className="block px-4 py-2 hover:bg-gray-100">Painel</Link>
             </div>
           )}
         </div>
