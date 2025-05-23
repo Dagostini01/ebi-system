@@ -1,13 +1,15 @@
 import { useState } from 'react';
 
 export default function Register() {
-  const [nome, setNome] = useState('');
+  const [nomePai, setNomePai] = useState('');
+  const [nomeMae, setNomeMae] = useState('');
   const [email, setEmail] = useState('');
   const [telefone, setTelefone] = useState('');
   const [senha, setSenha] = useState('');
-  const [igreja, setIgreja] = useState('');
+  const [comum, setComum] = useState('');
 
-  const igrejasDisponiveis = [
+  const comuns = [
+    'Vila Ré',
     'Central - SP',
     'Zona Leste - SP',
     'Campinas - SP',
@@ -17,7 +19,7 @@ export default function Register() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ nome, email, telefone, senha, igreja });
+    console.log({ nomePai, nomeMae, email, telefone, senha, comum });
   };
 
   return (
@@ -26,17 +28,23 @@ export default function Register() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
-          placeholder="Nome completo"
-          value={nome}
-          onChange={e => setNome(e.target.value)}
+          placeholder="Nome do Pai"
+          value={nomePai}
+          onChange={(e) => setNomePai(e.target.value)}
           className="w-full px-3 py-2 border rounded"
-          required
+        />
+        <input
+          type="text"
+          placeholder="Nome da Mãe"
+          value={nomeMae}
+          onChange={(e) => setNomeMae(e.target.value)}
+          className="w-full px-3 py-2 border rounded"
         />
         <input
           type="email"
           placeholder="Email"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           className="w-full px-3 py-2 border rounded"
           required
         />
@@ -44,30 +52,32 @@ export default function Register() {
           type="tel"
           placeholder="Telefone"
           value={telefone}
-          onChange={e => setTelefone(e.target.value)}
+          onChange={(e) => setTelefone(e.target.value)}
           className="w-full px-3 py-2 border rounded"
-          required
         />
         <input
           type="password"
           placeholder="Senha"
           value={senha}
-          onChange={e => setSenha(e.target.value)}
+          onChange={(e) => setSenha(e.target.value)}
           className="w-full px-3 py-2 border rounded"
           required
         />
         <select
-          value={igreja}
-          onChange={e => setIgreja(e.target.value)}
+          value={comum}
+          onChange={(e) => setComum(e.target.value)}
           className="w-full px-3 py-2 border rounded"
           required
         >
-          <option value="">Selecione sua igreja</option>
-          {igrejasDisponiveis.map((nome, index) => (
-            <option key={index} value={nome}>{nome}</option>
+          <option value="">Selecione a comum</option>
+          {comuns.map((nome, idx) => (
+            <option key={idx} value={nome}>{nome}</option>
           ))}
         </select>
-        <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        >
           Cadastrar
         </button>
       </form>

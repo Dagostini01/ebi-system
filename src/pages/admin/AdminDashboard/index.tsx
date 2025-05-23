@@ -1,108 +1,68 @@
 import { useState } from 'react';
 
 export default function AdminDashboard() {
-  const pais = [
+  const [dataSelecionada, setDataSelecionada] = useState('');
+  
+  const presencasMock = [
     {
-      nome: 'João Silva',
-      email: 'joao@email.com',
-      filhos: [
-        { nome: 'Ana', codigo: '', validado: false, entrada: '', saida: '' },
-        { nome: 'Lucas', codigo: '', validado: false, entrada: '', saida: '' },
-      ]
+      data: '2025-05-20',
+      nomeCrianca: 'Ana Beatriz',
+      entrada: '19:45',
+      saida: '21:00',
+      responsavel: 'João e Maria Silva',
+      comum: 'Vila Ré'
     },
     {
-      nome: 'Maria Souza',
-      email: 'maria@email.com',
-      filhos: [
-        { nome: 'Carlos', codigo: '', validado: false, entrada: '', saida: '' },
-      ]
+      data: '2025-05-20',
+      nomeCrianca: 'João Pedro',
+      entrada: '19:50',
+      saida: '',
+      responsavel: 'Carlos Mendes',
+      comum: 'Campinas - SP'
+    },
+    {
+      data: '2025-05-19',
+      nomeCrianca: 'Beatriz Lima',
+      entrada: '19:30',
+      saida: '20:50',
+      responsavel: 'Luciana Lima',
+      comum: 'Zona Leste - SP'
     }
   ];
 
-  const [estadoPais, setEstadoPais] = useState(pais);
-
-  const handleCodigoChange = (paiIndex: number, filhoIndex: number, value: string) => {
-    const copia = [...estadoPais];
-    copia[paiIndex].filhos[filhoIndex].codigo = value;
-    setEstadoPais(copia);
-  };
-
-  const handleEntradaChange = (paiIndex: number, filhoIndex: number, value: string) => {
-    const copia = [...estadoPais];
-    copia[paiIndex].filhos[filhoIndex].entrada = value;
-    setEstadoPais(copia);
-  };
-
-  const handleSaidaChange = (paiIndex: number, filhoIndex: number, value: string) => {
-    const copia = [...estadoPais];
-    copia[paiIndex].filhos[filhoIndex].saida = value;
-    setEstadoPais(copia);
-  };
-
-  const validarCodigo = (paiIndex: number, filhoIndex: number) => {
-    const copia = [...estadoPais];
-    const codigo = copia[paiIndex].filhos[filhoIndex].codigo;
-    if (codigo.trim() !== '') {
-      copia[paiIndex].filhos[filhoIndex].validado = true;
-      alert(`Código validado para ${copia[paiIndex].filhos[filhoIndex].nome}`);
-    } else {
-      alert('Código inválido');
-    }
-    setEstadoPais(copia);
-  };
+  const presencasFiltradas = presencasMock.filter(p => p.data === dataSelecionada);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Painel do Administrador</h1>
+    <div className="max-w-4xl mx-auto mt-8 p-4 bg-white rounded shadow">
+      <h2 className="text-2xl font-bold mb-4 text-center">Painel do Administrador</h2>
 
-      <div className="space-y-6">
-        {estadoPais.map((pai, indexPai) => (
-          <div key={indexPai} className="p-4 border rounded shadow bg-white">
-            <h2 className="text-lg font-semibold">{pai.nome}</h2>
-            <p className="text-sm text-gray-600">{pai.email}</p>
-
-            <div className="mt-4">
-              <h3 className="font-medium mb-2">Filhos cadastrados:</h3>
-              <div className="space-y-3">
-                {pai.filhos.map((filho, indexFilho) => (
-                  <div key={indexFilho} className="p-3 border rounded bg-gray-50">
-                    <p className="font-medium">{filho.nome}</p>
-                    <div className="flex flex-col sm:flex-row gap-2 mt-2">
-                      <input
-                        type="text"
-                        placeholder="Código de retirada"
-                        value={filho.codigo}
-                        onChange={(e) => handleCodigoChange(indexPai, indexFilho, e.target.value)}
-                        className="border px-3 py-1 rounded w-full sm:w-64"
-                      />
-                      <input
-                        type="time"
-                        value={filho.entrada}
-                        onChange={(e) => handleEntradaChange(indexPai, indexFilho, e.target.value)}
-                        className="border px-3 py-1 rounded w-full sm:w-32"
-                        placeholder="Entrada"
-                      />
-                      <input
-                        type="time"
-                        value={filho.saida}
-                        onChange={(e) => handleSaidaChange(indexPai, indexFilho, e.target.value)}
-                        className="border px-3 py-1 rounded w-full sm:w-32"
-                        placeholder="Saída"
-                      />
-                      <button
-                        onClick={() => validarCodigo(indexPai, indexFilho)}
-                        className={`text-white px-4 py-1 rounded ${filho.validado ? 'bg-blue-600' : 'bg-red-600 hover:bg-red-700'}`}
-                      >
-                        {filho.validado ? 'Validado' : 'Validar'}
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="mb-6">
+        <label className="block mb-1 font-medium text-gray-700">Selecione uma data:</label>
+        <input
+          type="date"
+          value={dataSelecionada}
+          onChange={(e) => setDataSelecionada(e.target.value)}
+          className="border px-3 py-2 rounded w-full sm:w-64"
+        />
       </div>
+
+      {dataSelecionada && presencasFiltradas.length > 0 ? (
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Presenças em {dataSelecionada}</h3>
+          {presencasFiltradas.map((p, idx) => (
+            <div key={idx} className="border p-4 rounded mb-3 bg-gray-50">
+              <p><strong>Criança:</strong> {p.nomeCrianca}</p>
+              <p><strong>Responsável:</strong> {p.responsavel}</p>
+              <p><strong>Comum:</strong> {p.comum}</p>
+              <p><strong>Entrada:</strong> {p.entrada || '—'} | <strong>Saída:</strong> {p.saida || '—'}</p>
+            </div>
+          ))}
+        </div>
+      ) : dataSelecionada ? (
+        <p className="text-gray-500 italic">Nenhuma presença registrada para esta data.</p>
+      ) : (
+        <p className="text-gray-500 italic">Selecione uma data para visualizar o histórico.</p>
+      )}
     </div>
   );
 }

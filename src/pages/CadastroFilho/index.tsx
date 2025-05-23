@@ -5,10 +5,20 @@ export default function CadastroFilho() {
   const [idade, setIdade] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
   const [observacoes, setObservacoes] = useState('');
+  const [comum, setComum] = useState('');
+
+  const comuns = [
+    'Vila Ré',
+    'Central - SP',
+    'Zona Leste - SP',
+    'Campinas - SP',
+    'Belo Horizonte - MG',
+    'Porto Alegre - RS'
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ nome, idade, dataNascimento, observacoes });
+    console.log({ nome, idade, dataNascimento, observacoes, comum });
   };
 
   return (
@@ -19,7 +29,7 @@ export default function CadastroFilho() {
           type="text"
           placeholder="Nome da criança"
           value={nome}
-          onChange={e => setNome(e.target.value)}
+          onChange={(e) => setNome(e.target.value)}
           className="w-full px-3 py-2 border rounded"
           required
         />
@@ -27,27 +37,38 @@ export default function CadastroFilho() {
           type="number"
           placeholder="Idade"
           value={idade}
-          onChange={e => setIdade(e.target.value)}
+          onChange={(e) => setIdade(e.target.value)}
           className="w-full px-3 py-2 border rounded"
-          required
         />
         <input
           type="date"
+          placeholder="Data de nascimento"
           value={dataNascimento}
           onChange={(e) => setDataNascimento(e.target.value)}
           className="w-full px-3 py-2 border rounded"
-          required
         />
-
-        <textarea
-          placeholder="Observações (alergias, necessidades, etc)"
-          value={observacoes}
-          onChange={e => setObservacoes(e.target.value)}
+        <select
+          value={comum}
+          onChange={(e) => setComum(e.target.value)}
           className="w-full px-3 py-2 border rounded"
-          rows={3}
-        ></textarea>
-        <button type="submit" className="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700">
-          Cadastrar Criança
+          required
+        >
+          <option value="">Selecione a comum</option>
+          {comuns.map((nome, idx) => (
+            <option key={idx} value={nome}>{nome}</option>
+          ))}
+        </select>
+        <textarea
+          placeholder="Observações (alergias, etc.)"
+          value={observacoes}
+          onChange={(e) => setObservacoes(e.target.value)}
+          className="w-full px-3 py-2 border rounded"
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        >
+          Cadastrar
         </button>
       </form>
     </div>
