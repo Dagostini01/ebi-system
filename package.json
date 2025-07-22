@@ -1,28 +1,28 @@
 {
   "name": "ebi-system",
-  "private": true,
   "version": "0.0.1",
-  "type": "module",
+  "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "npx vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@blackbox-vision/react-qr-reader": "^5.0.0",
+    "html5-qrcode": "^2.3.8",
+    "qrcode": "^1.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-qr-code": "^2.0.18",
     "react-router-dom": "^7.6.0"
   },
   "devDependencies": {
-    "@types/react": "^19.1.4",
-    "@types/react-dom": "^19.1.5",
-    "@vitejs/plugin-react": "^4.0.0",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.21",
-    "tailwindcss": "^3.3.2",
-    "typescript": "^5.0.2",
-    "vite": "^4.5.14"
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.34",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.2.0"
   }
 }
