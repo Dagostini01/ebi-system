@@ -45,6 +45,8 @@ export default function Navbar() {
               <Link to="/admin/login" className="block px-4 py-2 hover:bg-gray-100">Login</Link>
               <Link to="/admin/register" className="block px-4 py-2 hover:bg-gray-100">Cadastro</Link>
               <Link to="/admin/dashboard" className="block px-4 py-2 hover:bg-gray-100">Painel</Link>
+              <Link to="/admin/escanear" className="block px-4 py-2 hover:bg-gray-100">QR Code</Link>
+              <Link to="/admin/presencas-do-dia" className="block px-4 py-2 hover:bg-gray-100">Presença do dia</Link>
             </div>
           )}
         </div>

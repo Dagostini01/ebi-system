@@ -11,6 +11,8 @@ import PainelPai from './pages/PaiDashboard'
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminRegister from './pages/admin/AdminRegister';
+import AdminScanQR from './pages/admin/AdminScanQR';
+import AdminPresencasDoDia from './pages/admin/AdminPresencaDia';
 
 export function App() {
   return (
@@ -26,6 +28,8 @@ export function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/register" element={<AdminRegister />} />
+        <Route path="/admin/escanear" element={<AdminScanQR />} />
+        <Route path="/admin/presencas-do-dia" element={<AdminPresencasDoDia />} />
 
       </Routes>
     </Router>
