@@ -3,16 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NavBar';
 
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import CadastroFilho from './pages/CadastroFilho';
-import PainelPai from './pages/PaiDashboard'
+import Login from './pages/responsavel/LoginResponsavel';
+import Register from './pages/responsavel/CadastroResponsavel';
+import CadastroFilho from './pages/responsavel/CadastroFilho';
+import PainelPai from './pages/responsavel/PainelResponsavel'
 
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminRegister from './pages/admin/AdminRegister';
-import AdminScanQR from './pages/admin/AdminScanQR';
-import AdminPresencasDoDia from './pages/admin/AdminPresencaDia';
+import AdminLogin from './pages/admin/LoginAdmin';
+import AdminDashboard from './pages/admin/PainelAdmin';
+import AdminRegister from './pages/admin/CadastroAdmin';
+import AdminScanQR from './pages/admin/ScanQRAdmin';
+import AdminPresencasDoDia from './pages/admin/PresencaDiaAdmin';
 
 export function App() {
   return (
